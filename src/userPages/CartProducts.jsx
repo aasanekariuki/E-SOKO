@@ -29,7 +29,7 @@ const CartProducts = () => {
     };
 
     return (
-        <div className="container py-4">
+        <div className="container-fluid py-4" style={{ backgroundColor: 'teal' }}>
             <div className="row mb-4">
                 <div className="col-lg-8 mx-auto">
                     <h1 className="display-4 text-center">My Cart</h1>
@@ -47,7 +47,7 @@ const CartProducts = () => {
                     <div className="col-lg-8 mx-auto">
                         <ul className="list-group shadow">
                             {cartProducts.map(product => (
-                                <li className="list-group-item mb-3" key={product._id}>
+                                <li className="list-group-item mb-3" key={product._id} style={{ backgroundColor: 'grey', color: 'white' }}>
                                     <div className="media align-items-center">
                                         <img src={product.productUrl} alt={product.productName} className="mr-3" style={{ width: '150px', height: '150px', objectFit: 'cover' }} />
                                         <div className="media-body">
