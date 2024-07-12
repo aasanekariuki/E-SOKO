@@ -65,9 +65,9 @@ const Orders = () => {
   };
 
   return (
-    <>
+    <div className="orders-page" style={{ backgroundColor: 'teal', minHeight: '100vh', paddingTop: '4rem' }}>
       <Toaster />
-      <Container className="my-5">
+      <Container>
         <Row>
           <Col md={6} className="mx-auto">
             <Card className="shadow-lg" style={{ backgroundColor: '#343a40', color: '#fff' }}>
@@ -95,7 +95,7 @@ const Orders = () => {
           </Col>
         </Row>
       </Container>
-    </>
+    </div>
   );
 };
 

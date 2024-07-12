@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
+import { Container, Row, Col, ListGroup, ListGroupItem, Button, Image } from 'react-bootstrap';
 
 const CartProducts = () => {
   const [cartProducts, setCartProducts] = useState([]);
@@ -61,57 +62,57 @@ const CartProducts = () => {
   };
 
   return (
-    <div className="container-fluid py-4" style={{ backgroundColor: 'teal' }}>
-      <div className="row mb-4">
-        <div className="col-lg-8 mx-auto">
-          <h1 className="display-4 text-center">My Cart</h1>
-        </div>
-      </div>
-      {cartProducts.length === 0 ? (
-        <div className="row text-center">
-          <div className="col-lg-7 mx-auto">
-            <h2 className="text-muted">Your Cart is Empty</h2>
-            <NavLink to="/" className="btn btn-primary">
-              Go Back to Home
-            </NavLink>
-          </div>
-        </div>
-      ) : (
-        <div className="row">
-          <div className="col-lg-8 mx-auto">
-            <ul className="list-group shadow">
-              {cartProducts.map((product) => (
-                <li
-                  className="list-group-item mb-3"
-                  key={product.id}
-                  style={{ backgroundColor: 'grey', color: 'white' }}
-                >
-                  <div className="media align-items-center">
-                    <img
-                      src={product.image}
-                      alt={product.name}
-                      className="mr-3"
-                      style={{ width: '150px', height: '150px', objectFit: 'cover' }}
-                    />
-                    <div className="media-body">
-                      <h5 className="mt-0">{product.name}</h5>
-                      <p className="text-muted mb-1">₹ {product.price} for {product.category}</p>
-                      <div>
-                        <button className="btn btn-success mr-2" onClick={() => placeOrder(product)}>
-                          Place Order
-                        </button>
-                        <button className="btn btn-danger" onClick={() => removeItem(product.id)}>
-                          Remove
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-      )}
+    <div className="cart-products-page" style={{ backgroundColor: 'teal', minHeight: '100vh', paddingTop: '4rem' }}>
+      <Container>
+        <Row>
+          <Col md={6} className="mx-auto">
+            <h1 className="display-4 text-center mb-4" style={{ fontWeight: 'bold' }}>
+              My Cart
+            </h1>
+            {cartProducts.length === 0 && (
+              <Row className="text-center">
+                <Col lg={{ span: 7, offset: 2 }}>
+                  <h2 className="text-muted mb-4" style={{ fontWeight: 'bold', fontSize: '2rem' }}>
+                    Your Cart is Empty Mind adding any Products ?
+                  </h2>
+                  <NavLink to="/" className="btn btn-primary">
+                    Go Back to Home
+                  </NavLink>
+                </Col>
+              </Row>
+            )}
+            {cartProducts.length > 0 && (
+              <ListGroup className="shadow">
+                {cartProducts.map((product) => (
+                  <ListGroupItem key={product.id} className="mb-3" style={{ backgroundColor: 'grey', color: 'white' }}>
+                    <Row className="align-items-center">
+                      <Col md={4}>
+                        <Image src={product.image} alt={product.name} fluid />
+                      </Col>
+                      <Col md={8}>
+                        <h5 className="mb-1" style={{ fontWeight: 'bold', fontSize: '1.5rem' }}>
+                          {product.name}
+                        </h5>
+                        <p className="text-muted mb-3" style={{ fontWeight: 'bold', fontSize: '1.2rem' }}>
+                          ₹ {product.price} for {product.category}
+                        </p>
+                        <div>
+                          <Button variant="success" className="mr-2" onClick={() => placeOrder(product)}>
+                            Place Order
+                          </Button>
+                          <Button variant="danger" onClick={() => removeItem(product.id)}>
+                            Remove
+                          </Button>
+                        </div>
+                      </Col>
+                    </Row>
+                  </ListGroupItem>
+                ))}
+              </ListGroup>
+            )}
+          </Col>
+        </Row>
+      </Container>
     </div>
   );
 };
