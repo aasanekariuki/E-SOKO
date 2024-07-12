@@ -1,16 +1,37 @@
-import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React, { useState } from 'react';
+import { useNavigate, Link } from 'react-router-dom';
 import { Container, Form, Button } from 'react-bootstrap';
-import './styles.css'
+import './styles.css';
 
 const Login = () => {
   const navigate = useNavigate();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-    // Perform login logic here
-    // Once the login is successful, navigate to the Orders page
-    navigate('/orders');
+
+    try {
+      const response = await fetch('/api/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, password }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        // Store the access token in local storage or a cookie
+        localStorage.setItem('accessToken', data.access_token);
+        navigate('/home');
+      } else {
+        alert(data.message);
+      }
+    } catch (error) {
+      console.error('Error logging in:', error);
+    }
   };
 
   return (
@@ -36,12 +57,24 @@ const Login = () => {
         <Form onSubmit={handleLogin}>
           <Form.Group className="mb-3" controlId="formBasicEmail">
             <Form.Label className="text-white">Email address</Form.Label>
-            <Form.Control type="email" placeholder="Enter email" required />
+            <Form.Control
+              type="email"
+              placeholder="Enter email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
           </Form.Group>
 
           <Form.Group className="mb-3" controlId="formBasicPassword">
             <Form.Label className="text-white">Password</Form.Label>
-            <Form.Control type="password" placeholder="Enter password" required />
+            <Form.Control
+              type="password"
+              placeholder="Enter password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
           </Form.Group>
 
           <Button variant="primary" type="submit">
@@ -54,7 +87,7 @@ const Login = () => {
         </p>
       </Container>
     </div>
-  )
-}
+  );
+};
 
 export default Login;
