@@ -62,17 +62,17 @@ const CartProducts = () => {
   };
 
   return (
-    <div className="cart-products-page" style={{ backgroundColor: 'teal', minHeight: '100vh', paddingTop: '4rem' }}>
+    <div className="cart-products-page" style={{ backgroundColor: '#141E30', minHeight: '100vh', paddingTop: '4rem' }}>
       <Container>
         <Row>
           <Col md={6} className="mx-auto">
-            <h1 className="display-4 text-center mb-4" style={{ fontWeight: 'bold' }}>
+            <h1 className="display-4 text-center mb-4" style={{ fontWeight: 'bold', color: 'white' }}>
               My Cart
             </h1>
             {cartProducts.length === 0 && (
               <Row className="text-center">
                 <Col lg={{ span: 7, offset: 2 }}>
-                  <h2 className="text-muted mb-4" style={{ fontWeight: 'bold', fontSize: '2rem' }}>
+                  <h2 className="mb-4" style={{ fontWeight: 'bold', fontSize: '2rem', color: 'white' }}>
                     Your Cart is Empty Mind adding any Products ?
                   </h2>
                   <NavLink to="/" className="btn btn-primary">
