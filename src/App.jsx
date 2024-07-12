@@ -3,8 +3,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Login from "./components/Login";
 import Register from "./components/Register";
 import Orders from "./userPages/Orders";
-import CartProducts from "./userPages/CartProducts"; // Import the CartProducts component
-
+import CartProducts from "./userPages/CartProducts"; 
 const App = () => {
     return (
         <Router>
@@ -13,7 +12,7 @@ const App = () => {
                 <Route exact path="/register" element={<Register />} />
                 <Route exact path="/login" element={<Login />} />
                 <Route exact path="/orders" element={<Orders />} />
-                <Route exact path="/cartProducts" element={<CartProducts />} /> {/* Add the CartProducts route */}
+                <Route exact path="/cartProducts" element={<CartProducts />} /> 
             </Routes>
         </Router>
     );
