@@ -15,7 +15,7 @@ const Orders = () => {
     // Fetch product details from the backend
     const fetchProductDetails = async () => {
       try {
-        const response = await fetch(`/api/products/${productId}`);
+        const response = await fetch(`https://dpg-cq92slaju9rs73av4qk0-a.frankfurt-postgres.render.com/api/products/${productId}`);
         const data = await response.json();
 
         if (response.ok) {
@@ -41,7 +41,7 @@ const Orders = () => {
 
   const placeOrder = async () => {
     try {
-      const response = await fetch('/api/orders', {
+      const response = await fetch('https://dpg-cq92slaju9rs73av4qk0-a.frankfurt-postgres.render.com/api/orders', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

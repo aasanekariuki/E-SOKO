@@ -1,9 +1,14 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import axios from 'axios';
 import Login from "./components/Login";
 import Register from "./components/Register";
 import Orders from "./userPages/Orders";
-import CartProducts from "./userPages/CartProducts"; 
+import CartProducts from "./userPages/CartProducts";
+
+// Set up Axios with the correct base URL
+axios.defaults.baseURL = 'https://dpg-cq92slaju9rs73av4qk0-a.frankfurt-postgres.render.com/api';
+
 const App = () => {
     return (
         <Router>

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { Container, Form, Button } from 'react-bootstrap';
+import { Container, Form, Button, Alert } from 'react-bootstrap';
 import './styles.css';
 
 const Register = () => {
@@ -9,12 +9,13 @@ const Register = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [address, setAddress] = useState('');
+  const [error, setError] = useState('');
 
   const handleRegister = async (e) => {
     e.preventDefault();
 
     try {
-      const response = await fetch('/api/register', {
+      const response = await fetch('https://dpg-cq92slaju9rs73av4qk0-a.frankfurt-postgres.render.com/api/register', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -28,10 +29,11 @@ const Register = () => {
         alert(data.message);
         navigate('/login');
       } else {
-        alert(data.message);
+        setError(data.message);
       }
     } catch (error) {
       console.error('Error registering:', error);
+      setError('An error occurred while registering. Please try again later.');
     }
   };
 
@@ -52,9 +54,14 @@ const Register = () => {
         }}>
           Welcome to E-SOKO
         </h1>
-        <h2 className="text-center text-black mb-4">
+        <h2 className="text-center text-black mb-5">
           <i className="bi bi-person-plus-fill"></i> Register
         </h2>
+        {error && (
+          <Alert variant="danger" onClose={() => setError('')} dismissible>
+            {error}
+          </Alert>
+        )}
         <Form onSubmit={handleRegister}>
           <Form.Group className="mb-3" controlId="formBasicName">
             <Form.Label className="text-white">Name</Form.Label>

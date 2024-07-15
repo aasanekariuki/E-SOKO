@@ -9,7 +9,7 @@ const CartProducts = () => {
     // Fetch cart items from the backend
     const fetchCartItems = async () => {
       try {
-        const response = await fetch('/api/cart');
+        const response = await fetch('https://dpg-cq92slaju9rs73av4qk0-a.frankfurt-postgres.render.com/api/cart');
         const data = await response.json();
 
         if (response.ok) {
@@ -27,7 +27,7 @@ const CartProducts = () => {
 
   const removeItem = async (productId) => {
     try {
-      const response = await fetch(`/api/cart/${productId}`, {
+      const response = await fetch(`https://dpg-cq92slaju9rs73av4qk0-a.frankfurt-postgres.render.com/api/cart/${productId}`, {
         method: 'DELETE',
       });
 
@@ -43,7 +43,7 @@ const CartProducts = () => {
 
   const placeOrder = async (product) => {
     try {
-      const response = await fetch('/api/orders', {
+      const response = await fetch('https://dpg-cq92slaju9rs73av4qk0-a.frankfurt-postgres.render.com/api/orders', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
