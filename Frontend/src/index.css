@@ -1,0 +1,23 @@
+.welcome{
+    padding: 20px;
+    height: fit-content;
+    width: 50%;
+    background-color: aliceblue;  
+    opacity: 0.9;
+    align-items: center;  
+}
+
+.app{
+    background-image: url('./myImages/e-comm.webp');
+}
+
+.navb{
+    background-image: url('');
+}
+
+.cardhead {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: xx-large;
+    color: darkblue;
+    font-style: oblique;
+}
