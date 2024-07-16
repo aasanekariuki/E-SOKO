@@ -60,7 +60,7 @@ function Navbar() {
             </li>
             <li className="nav-item">
               <NavLink to="/about" className={`nav-link navs ${isActive('/about') ? 'active' : ''}`}>
-                ABOUT US
+                ABOUT
               </NavLink>
             </li>
             <li className="nav-item dropdown navs">
