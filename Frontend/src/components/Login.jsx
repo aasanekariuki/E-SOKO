@@ -14,7 +14,7 @@ const Login = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post('/users', { email, password });
+      const response = await axios.post('/users/login', { email, password });
 
       if (response.data.access_token) {
         // Save the token in localStorage
