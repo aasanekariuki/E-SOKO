@@ -24,7 +24,7 @@ const Products = () => {
 const styles={
   container: {
     fontFamily: 'Arial, sans-serif',
-    backgroundColor: '#000080',
+    backgroundColor: '#141E30',
     margin: 0,
     padding: '40px',
     display: 'flex',

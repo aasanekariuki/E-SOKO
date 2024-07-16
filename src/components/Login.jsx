@@ -1,37 +1,43 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { Container, Form, Button, Alert } from 'react-bootstrap';
-import axios from 'axios';
 import './styles.css';
 
-const Register = () => {
+const Login = () => {
   const navigate = useNavigate();
-  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [address, setAddress] = useState('');
   const [error, setError] = useState('');
 
-  const handleRegister = async (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
 
     try {
-      const response = await axios.post('/users', { name, email, password, address });
+      const response = await fetch('https://dpg-cq92slaju9rs73av4qk0-a.frankfurt-postgres.render.com/api/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, password }),
+      });
 
-      if (response.data.message) {
-        alert(response.data.message);
-        navigate('/login');
+      const data = await response.json();
+
+      if (response.ok) {
+        // Store the access token in local storage or a cookie
+        localStorage.setItem('accessToken', data.access_token);
+        navigate('/home');
       } else {
-        setError(response.data.message);
+        setError(data.message);
       }
     } catch (error) {
-      console.error('Error registering:', error);
-      setError('An error occurred while registering. Please try again later.');
+      console.error('Error logging in:', error);
+      setError('An error occurred while logging in. Please try again later.');
     }
   };
 
   return (
-    <div className="register-page" style={{
+    <div className="login-page" style={{
       background: 'linear-gradient(to right, #141E30, #243B55)',
       minHeight: '100vh',
       display: 'flex',
@@ -48,25 +54,14 @@ const Register = () => {
           Welcome to E-SOKO
         </h1>
         <h2 className="text-center text-black mb-5">
-          <i className="bi bi-person-plus-fill"></i> Register
+          <i className="bi bi-box-arrow-in-right"></i> Login
         </h2>
         {error && (
           <Alert variant="danger" onClose={() => setError('')} dismissible>
             {error}
           </Alert>
         )}
-        <Form onSubmit={handleRegister}>
-          <Form.Group className="mb-3" controlId="formBasicName">
-            <Form.Label className="text-white">Name</Form.Label>
-            <Form.Control
-              type="text"
-              placeholder="Enter your name"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              required
-            />
-          </Form.Group>
-
+        <Form onSubmit={handleLogin}>
           <Form.Group className="mb-3" controlId="formBasicEmail">
             <Form.Label className="text-white">Email address</Form.Label>
             <Form.Control
@@ -82,35 +77,24 @@ const Register = () => {
             <Form.Label className="text-white">Password</Form.Label>
             <Form.Control
               type="password"
-              placeholder="Password"
+              placeholder="Enter password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
             />
           </Form.Group>
 
-          <Form.Group className="mb-3" controlId="formBasicAddress">
-            <Form.Label className="text-white">Address</Form.Label>
-            <Form.Control
-              type="text"
-              placeholder="Enter your address"
-              value={address}
-              onChange={(e) => setAddress(e.target.value)}
-              required
-            />
-          </Form.Group>
-
           <Button variant="primary" type="submit">
-            <i className="bi bi-person-plus"></i> Register
+            <i className="bi bi-box-arrow-in-tight"></i> Login
           </Button>
         </Form>
 
         <p className="mt-3 text-center text-white">
-          <Link to="/login" className="text-primary">Already have an account? Login here</Link>
+          <Link to="/register" className="text-primary">Don't have an account? Register here</Link>
         </p>
       </Container>
     </div>
   );
 };
 
-export default Register;
+export default Login;

@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { Container, Form, Button, Alert } from 'react-bootstrap';
-import axios from 'axios';
 import './styles.css';
 
 const Register = () => {
@@ -16,13 +15,21 @@ const Register = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post('/users', { name, email, password, address });
+      const response = await fetch('https://dpg-cq92slaju9rs73av4qk0-a.frankfurt-postgres.render.com/api/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ name, email, password, address }),
+      });
 
-      if (response.data.message) {
-        alert(response.data.message);
+      const data = await response.json();
+
+      if (response.ok) {
+        alert(data.message);
         navigate('/login');
       } else {
-        setError(response.data.message);
+        setError(data.message);
       }
     } catch (error) {
       console.error('Error registering:', error);
@@ -106,7 +113,7 @@ const Register = () => {
         </Form>
 
         <p className="mt-3 text-center text-white">
-          <Link to="/login" className="text-primary">Already have an account? Login here</Link>
+          <Link to="/" className="text-primary">Already have an account? Login here</Link>
         </p>
       </Container>
     </div>

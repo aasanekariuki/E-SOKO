@@ -65,7 +65,7 @@ const Orders = () => {
   };
 
   return (
-    <div className="orders-page" style={{ backgroundColor: '#141E30', minHeight: '100vh', paddingTop: '15rem' }}>
+    <div className="orders-page" style={{ backgroundColor: '#141E30', minHeight: '100vh', paddingTop: '4rem' }}>
       <Toaster />
       <Container>
         <Row>
