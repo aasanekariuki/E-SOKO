@@ -51,7 +51,7 @@ const CartProducts = () => {
   };
 
   return (
-    <div className="cart-products-page" style={{ backgroundColor: '#141E30', minHeight: '100vh', paddingTop: '8rem' }}>
+    <div className="cart-products-page" style={{ backgroundColor: '#343a40', minHeight: '100vh', paddingTop: '15rem' }}>
       <Container>
         <Row>
           <Col md={8} className="mx-auto">

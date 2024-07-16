@@ -65,12 +65,12 @@ const Orders = () => {
   };
 
   return (
-    <div className="orders-page" style={{ backgroundColor: '#141E30', minHeight: '100vh', paddingTop: '15rem' }}>
+    <div className="orders-page" style={{ backgroundColor: '#343a40', minHeight: '100vh', paddingTop: '15rem' }}>
       <Toaster />
       <Container>
         <Row>
           <Col md={6} className="mx-auto">
-            <Card className="shadow-lg" style={{ backgroundColor: '#343a40', color: '#fff' }}>
+            <Card className="shadow-lg" style={{ backgroundColor: '#141E30', color: '#fff' }}>
               <Card.Body>
                 <Card.Title className="text-warning">{productName}</Card.Title>
                 <Card.Text className="text-light">{productType}</Card.Text>
