@@ -1,22 +1,53 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 
 
 const Products = () => {
+const [products, setProducts] = useState([])
+const getProducts = async () => {
+  try {
+    const response = await fetch("http://127.0.0.1:5000/products")
+        
+      if (!response.ok) {
+        throw new Error(`HTTP error: ${response.status}`)
+      }
+
+      const products = await response.json()
+
+      setProducts(products)
+
+  } catch (err) {
+    alert(err.message)
+  }
+}
+
+
+useEffect(() => {
+  getProducts()
+})
+
+
+
+
   return (
     <div style={styles.container}>
-    <Card style={{ width: '18rem' }}>
-      <Card.Img variant="top" src="holder.js/100px180" />
+
+    {products && products.map((product) => (
+    <Card style={{ width: '18rem' }} key={product.id}>
+      <Card.Img variant="top" src={product.image}/>
       <Card.Body>
-        <Card.Title>Card Title</Card.Title>
+        <Card.Title>{product.name}</Card.Title>
         <Card.Text>
-          Some quick example text to build on the card title and make up the
-          bulk of the card's content.
+          {product.description}
+        </Card.Text>
+        <Card.Text>
+        <p>Price: {product.price}</p>  
         </Card.Text>
         <Button variant="primary">Go somewhere</Button>
       </Card.Body>
     </Card>
+    ))}
     </div>
   )
 }
