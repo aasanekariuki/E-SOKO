@@ -1,27 +1,43 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 
-
 const Products = () => {
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await axios.get('https://dpg-cq92slaju9rs73av4qk0-a.frankfurt-postgres.render.com/api/products');
+        setProducts(response.data); 
+      } catch (error) {
+        console.error('Error fetching products:', error);
+      }
+    };
+
+    fetchProducts();
+  }, []);
+
   return (
     <div style={styles.container}>
-    <Card style={{ width: '18rem' }}>
-      <Card.Img variant="top" src="holder.js/100px180" />
-      <Card.Body>
-        <Card.Title>Card Title</Card.Title>
-        <Card.Text>
-          Some quick example text to build on the card title and make up the
-          bulk of the card's content.
-        </Card.Text>
-        <Button variant="primary">Go somewhere</Button>
-      </Card.Body>
-    </Card>
+      {products.map((product) => (
+        <Card key={product.id} style={{ width: '18rem', marginBottom: '1rem' }}>
+          <Card.Img variant="top" src={product.image} alt={product.name} />
+          <Card.Body>
+            <Card.Title>{product.name}</Card.Title>
+            <Card.Text>
+              {product.description}
+            </Card.Text>
+            <Button variant="primary">Go somewhere</Button>
+          </Card.Body>
+        </Card>
+      ))}
     </div>
-  )
-}
+  );
+};
 
-const styles={
+const styles = {
   container: {
     fontFamily: 'Arial, sans-serif',
     backgroundColor: '#141E30',
@@ -31,8 +47,8 @@ const styles={
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
-    height: '100vh',
+    minHeight: '100vh',
   },
-}
+};
 
-export default Products
+export default Products;
