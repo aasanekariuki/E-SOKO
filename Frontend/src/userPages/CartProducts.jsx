@@ -10,7 +10,7 @@ const CartProducts = () => {
     // Fetch cart items from the backend
     const fetchCartItems = async () => {
       try {
-        const response = await axios.get('https://dpg-cq92slaju9rs73av4qk0-a.frankfurt-postgres.render.com/api/cart');
+        const response = await axios.get('/cart');
         setCartProducts(response.data);
       } catch (error) {
         console.error('Error fetching cart items:', error);
@@ -22,7 +22,7 @@ const CartProducts = () => {
 
   const removeItem = async (productId) => {
     try {
-      const response = await axios.delete(`https://dpg-cq92slaju9rs73av4qk0-a.frankfurt-postgres.render.com/api/cart/${productId}`);
+      const response = await axios.delete(`/cart/${productId}`);
       if (response.status === 200) {
         setCartProducts(cartProducts.filter((item) => item.id !== productId));
       } else {
@@ -35,7 +35,7 @@ const CartProducts = () => {
 
   const placeOrder = async (product) => {
     try {
-      const response = await axios.post('https://dpg-cq92slaju9rs73av4qk0-a.frankfurt-postgres.render.com/api/orders', {
+      const response = await axios.post('/orders', {
         product: product.id,
         amount: 1,
         status: 'pending',
