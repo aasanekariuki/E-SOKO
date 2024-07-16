@@ -44,7 +44,7 @@ useEffect(() => {
         <Card.Text>
         <p>Price: {product.price}</p>  
         </Card.Text>
-        <Button variant="primary">Go somewhere</Button>
+        <Button variant="primary">Add to Cart</Button>
       </Card.Body>
     </Card>
     ))}
@@ -55,7 +55,7 @@ useEffect(() => {
 const styles={
   container: {
     fontFamily: 'Arial, sans-serif',
-    backgroundColor: '#000080',
+    backgroundColor: '#141E30',
     margin: 0,
     padding: '40px',
     display: 'flex',
