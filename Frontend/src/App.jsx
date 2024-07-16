@@ -12,6 +12,7 @@ import Products from './components/Products';
 import Orders from './userPages/Orders';
 import Carousel from './userPages/Carousel';
 import CartProducts from './userPages/CartProducts';
+import AboutUs from './components/AboutUs';
 
 axios.defaults.baseURL = 'https://dpg-cqb5shmehbks73djnqi0-a.frankfurt-postgres.render.com/api';
 axios.defaults.withCredentials = true;
@@ -30,6 +31,7 @@ function App() {
           <Route path="/orders" element={<Orders />} />
           <Route path="/carousel" element={<Carousel />} />
           <Route path="/cart" element={<CartProducts />} />
+          <Route path="/about" element={<AboutUs />} />
         </Routes>
       </Router>
     </div>

@@ -58,6 +58,11 @@ function Navbar() {
                 CART
               </NavLink>
             </li>
+            <li className="nav-item">
+              <NavLink to="/about" className={`nav-link navs ${isActive('/about') ? 'active' : ''}`}>
+                ABOUT US
+              </NavLink>
+            </li>
             <li className="nav-item dropdown navs">
               <NavLink to="#" className="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 SIGN IN
