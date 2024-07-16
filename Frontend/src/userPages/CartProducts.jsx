@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import { Container, Row, Col, ListGroup, ListGroupItem, Button, Image } from 'react-bootstrap';
+import axios from 'axios';
 
 const CartProducts = () => {
   const [cartProducts, setCartProducts] = useState([]);
@@ -9,14 +10,8 @@ const CartProducts = () => {
     // Fetch cart items from the backend
     const fetchCartItems = async () => {
       try {
-        const response = await fetch('/api/cart');
-        const data = await response.json();
-
-        if (response.ok) {
-          setCartProducts(data);
-        } else {
-          console.error('Error fetching cart items:', data.message);
-        }
+        const response = await axios.get('https://dpg-cq92slaju9rs73av4qk0-a.frankfurt-postgres.render.com/api/cart');
+        setCartProducts(response.data);
       } catch (error) {
         console.error('Error fetching cart items:', error);
       }
@@ -27,14 +22,11 @@ const CartProducts = () => {
 
   const removeItem = async (productId) => {
     try {
-      const response = await fetch(`/api/cart/${productId}`, {
-        method: 'DELETE',
-      });
-
-      if (response.ok) {
+      const response = await axios.delete(`https://dpg-cq92slaju9rs73av4qk0-a.frankfurt-postgres.render.com/api/cart/${productId}`);
+      if (response.status === 200) {
         setCartProducts(cartProducts.filter((item) => item.id !== productId));
       } else {
-        console.error('Error removing item from cart:', response.message);
+        console.error('Error removing item from cart:', response.data.message);
       }
     } catch (error) {
       console.error('Error removing item from cart:', error);
@@ -43,18 +35,15 @@ const CartProducts = () => {
 
   const placeOrder = async (product) => {
     try {
-      const response = await fetch('/api/orders', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ product: product.id, amount: 1, status: 'pending' }),
+      const response = await axios.post('https://dpg-cq92slaju9rs73av4qk0-a.frankfurt-postgres.render.com/api/orders', {
+        product: product.id,
+        amount: 1,
+        status: 'pending',
       });
-
-      if (response.ok) {
+      if (response.status === 200) {
         console.log(`Placing order for ${product.name}`);
       } else {
-        console.error('Error placing order:', response.message);
+        console.error('Error placing order:', response.data.message);
       }
     } catch (error) {
       console.error('Error placing order:', error);
@@ -62,18 +51,18 @@ const CartProducts = () => {
   };
 
   return (
-    <div className="cart-products-page" style={{ backgroundColor: '#141E30', minHeight: '100vh', paddingTop: '4rem' }}>
+    <div className="cart-products-page" style={{ backgroundColor: '#141E30', minHeight: '100vh', paddingTop: '8rem' }}>
       <Container>
         <Row>
-          <Col md={6} className="mx-auto">
+          <Col md={8} className="mx-auto">
             <h1 className="display-4 text-center mb-4" style={{ fontWeight: 'bold', color: 'white' }}>
               My Cart
             </h1>
             {cartProducts.length === 0 && (
               <Row className="text-center">
-                <Col lg={{ span: 7, offset: 2 }}>
+                <Col>
                   <h2 className="mb-4" style={{ fontWeight: 'bold', fontSize: '2rem', color: 'white' }}>
-                    Your Cart is Empty Mind adding any Products ?
+                    Your Cart is Empty. Mind adding any products?
                   </h2>
                   <NavLink to="/" className="btn btn-primary">
                     Go Back to Home
@@ -94,16 +83,14 @@ const CartProducts = () => {
                           {product.name}
                         </h5>
                         <p className="text-muted mb-3" style={{ fontWeight: 'bold', fontSize: '1.2rem' }}>
-                          ₹ {product.price} for {product.category}
+                          ₹ {product.price}
                         </p>
-                        <div>
-                          <Button variant="success" className="mr-2" onClick={() => placeOrder(product)}>
-                            Place Order
-                          </Button>
-                          <Button variant="danger" onClick={() => removeItem(product.id)}>
-                            Remove
-                          </Button>
-                        </div>
+                        <Button variant="danger" className="me-2" onClick={() => removeItem(product.id)}>
+                          Remove from Cart
+                        </Button>
+                        <Button variant="primary" onClick={() => placeOrder(product)}>
+                          Place Order
+                        </Button>
                       </Col>
                     </Row>
                   </ListGroupItem>
