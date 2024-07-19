@@ -50,6 +50,8 @@ const CartProducts = () => {
     }
   };
 
+  console.log(typeof cartProducts, cartProducts);
+
   return (
     <div className="cart-products-page" style={{ backgroundColor: '#343a40', minHeight: '100vh', paddingTop: '15rem' }}>
       <Container>
