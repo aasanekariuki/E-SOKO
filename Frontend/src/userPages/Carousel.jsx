@@ -21,9 +21,6 @@ const Carousel = () => {
                                     <p>
                                         Experience immersive sound and ultimate comfort with our latest headphones.
                                     </p>
-                                    <Link to="/product/1" className="btn btn-primary">
-                                        Shop Now
-                                    </Link>
                                 </BootstrapCarousel.Caption>
                             </BootstrapCarousel.Item>
 
@@ -39,9 +36,6 @@ const Carousel = () => {
                                     <p>
                                         Hurry! Discounts end on July 31st. Shop now and save big on all categories.
                                     </p>
-                                    <Link to="/sale" className="btn btn-primary">
-                                        Shop Sale
-                                    </Link>
                                 </BootstrapCarousel.Caption>
                             </BootstrapCarousel.Item>
 
