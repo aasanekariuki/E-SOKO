@@ -12,7 +12,7 @@ const Products = () => {
     const fetchProducts = async () => {
       try {
         const response = await axios.get('https://dpg-cqb5shmehbks73djnqi0-a.frankfurt-postgres.render.com/api/products', {
-          timeout: 10000 //
+          timeout: 10000 
         });
         setProducts(response.data);
       } catch (error) {
