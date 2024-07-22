@@ -10,7 +10,8 @@ function Home() {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await axios.get('/products');
+        // Updated URL to use the deployed backend
+        const response = await axios.get('https://e-soko-backened-qzca.onrender.com/products');
         setProducts(response.data);
       } catch (error) {
         console.error('Error fetching products:', error);

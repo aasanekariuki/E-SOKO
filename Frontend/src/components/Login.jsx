@@ -4,6 +4,9 @@ import { Container, Form, Button, Alert } from 'react-bootstrap';
 import axios from 'axios';
 import './styles.css';
 
+// Set Axios base URL
+axios.defaults.baseURL = 'https://e-soko-backened-qzca.onrender.com/';
+
 const Login = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
@@ -17,7 +20,6 @@ const Login = () => {
       const response = await axios.post('/users/login', { email, password });
 
       if (response.data.access_token) {
-        // Save the token in localStorage
         localStorage.setItem('jwt', response.data.access_token);
         alert('Login successful!');
         navigate('/');
