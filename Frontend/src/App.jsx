@@ -14,7 +14,8 @@ import Carousel from './userPages/Carousel';
 import CartProducts from './userPages/CartProducts';
 import AboutUs from './components/AboutUs';
 
-axios.defaults.baseURL = 'https://e-soko-backened-qzca.onrender.com/api';
+
+axios.defaults.baseURL = 'https://e-soko-backened-qzca.onrender.com/';
 axios.defaults.withCredentials = true;
 
 function App() {

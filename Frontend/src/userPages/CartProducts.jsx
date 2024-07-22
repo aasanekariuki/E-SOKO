@@ -4,16 +4,15 @@ import { Container, Row, Col, ListGroup, ListGroupItem, Button, Image } from 're
 import axios from 'axios';
 
 // Set Axios base URL
-axios.defaults.baseURL = 'https://e-soko-backened-qzca.onrender.com/api'; // Adjust the base URL if needed
+axios.defaults.baseURL = 'https://e-soko-backened-qzca.onrender.com/';
 
 const CartProducts = () => {
   const [cartProducts, setCartProducts] = useState([]);
 
   useEffect(() => {
-    // Fetch cart items from the backend
     const fetchCartItems = async () => {
       try {
-        const response = await axios.get('/cart');
+        const response = await axios.get('/carts');
         setCartProducts(response.data);
       } catch (error) {
         console.error('Error fetching cart items:', error);
@@ -25,7 +24,7 @@ const CartProducts = () => {
 
   const removeItem = async (productId) => {
     try {
-      const response = await axios.delete(`/cart/${productId}`);
+      const response = await axios.delete(`/carts/${productId}`);
       if (response.status === 200) {
         setCartProducts(cartProducts.filter((item) => item.id !== productId));
       } else {

@@ -11,7 +11,7 @@ const Products = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        // Update to use the full URL of the deployed backend
+        // Updated URL to use the deployed backend
         const response = await axios.get('https://e-soko-backened-qzca.onrender.com/products', {
           timeout: 10000 
         });
