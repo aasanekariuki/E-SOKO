@@ -3,6 +3,9 @@ import { NavLink } from 'react-router-dom';
 import { Container, Row, Col, ListGroup, ListGroupItem, Button, Image } from 'react-bootstrap';
 import axios from 'axios';
 
+// Set Axios base URL
+axios.defaults.baseURL = 'https://e-soko-backened-qzca.onrender.com/api'; // Adjust the base URL if needed
+
 const CartProducts = () => {
   const [cartProducts, setCartProducts] = useState([]);
 
@@ -49,8 +52,6 @@ const CartProducts = () => {
       console.error('Error placing order:', error);
     }
   };
-
-  console.log(typeof cartProducts, cartProducts);
 
   return (
     <div className="cart-products-page" style={{ backgroundColor: '#343a40', minHeight: '100vh', paddingTop: '15rem' }}>

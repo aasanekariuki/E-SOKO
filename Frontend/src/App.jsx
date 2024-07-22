@@ -14,7 +14,7 @@ import Carousel from './userPages/Carousel';
 import CartProducts from './userPages/CartProducts';
 import AboutUs from './components/AboutUs';
 
-axios.defaults.baseURL = 'https://dpg-cqb5shmehbks73djnqi0-a.frankfurt-postgres.render.com/api';
+axios.defaults.baseURL = 'https://e-soko-backened-qzca.onrender.com/api';
 axios.defaults.withCredentials = true;
 
 function App() {

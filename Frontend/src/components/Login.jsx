@@ -39,25 +39,13 @@ const Login = () => {
       justifyContent: 'center'
     }}>
       <Container className="mt-5 bg-light p-5 rounded shadow" style={{ maxWidth: '800px', width: '100%' }}>
-        <h1 className="text-center text-primary mb-4 hover-up" style={{
-          fontWeight: 'bold',
-          fontSize: '3rem',
-          cursor: 'pointer',
-          transition: 'transform 0.3s ease-in-out'
-        }}>
-          Welcome Back to E-SOKO
+        <h1 className="text-center mb-4" style={{ fontWeight: 'bold', color: '#333' }}>
+          Login
         </h1>
-        <h2 className="text-center text-black mb-5">
-          <i className="bi bi-person-circle"></i> Login
-        </h2>
-        {error && (
-          <Alert variant="danger" onClose={() => setError('')} dismissible>
-            {error}
-          </Alert>
-        )}
+        {error && <Alert variant="danger">{error}</Alert>}
         <Form onSubmit={handleLogin}>
-          <Form.Group className="mb-3" controlId="formBasicEmail">
-            <Form.Label className="text-white">Email address</Form.Label>
+          <Form.Group controlId="formBasicEmail" className="mb-3">
+            <Form.Label>Email address</Form.Label>
             <Form.Control
               type="email"
               placeholder="Enter email"
@@ -67,8 +55,8 @@ const Login = () => {
             />
           </Form.Group>
 
-          <Form.Group className="mb-3" controlId="formBasicPassword">
-            <Form.Label className="text-white">Password</Form.Label>
+          <Form.Group controlId="formBasicPassword" className="mb-3">
+            <Form.Label>Password</Form.Label>
             <Form.Control
               type="password"
               placeholder="Password"
@@ -78,14 +66,16 @@ const Login = () => {
             />
           </Form.Group>
 
-          <Button variant="primary" type="submit">
-            <i className="bi bi-box-arrow-in-right"></i> Login
-          </Button>
-        </Form>
+          <div className="d-grid gap-2">
+            <Button variant="primary" type="submit">
+              Login
+            </Button>
+          </div>
 
-        <p className="mt-3 text-center text-white">
-          <Link to="/register" className="text-primary">Don't have an account? Register here</Link>
-        </p>
+          <div className="text-center mt-3">
+            <Link to="/register">Don't have an account? Register here</Link>
+          </div>
+        </Form>
       </Container>
     </div>
   );
