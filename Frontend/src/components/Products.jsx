@@ -3,18 +3,17 @@ import axios from 'axios';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Spinner from 'react-bootstrap/Spinner';
+import { useNavigate } from 'react-router-dom';
 
 const Products = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        // Updated URL to use the deployed backend
-        const response = await axios.get('https://e-soko-backened-qzca.onrender.com/products', {
-          timeout: 10000 
-        });
+        const response = await axios.get('/products', { timeout: 10000 });
         setProducts(response.data);
       } catch (error) {
         console.error('Error fetching products:', error);
@@ -26,23 +25,30 @@ const Products = () => {
     fetchProducts();
   }, []);
 
+  const handleOrder = (product) => {
+    // Navigate to the Orders page and pass the product data
+    navigate('/orders', { state: { product } });
+  };
+
   return (
     <div style={styles.container}>
       {loading ? (
         <Spinner animation="border" variant="light" />
       ) : (
-        products.map((product) => (
-          <Card key={product.id} style={{ width: '18rem', marginBottom: '1rem' }}>
-            <Card.Img variant="top" src={product.image} alt={product.name} />
-            <Card.Body>
-              <Card.Title>{product.name}</Card.Title>
-              <Card.Text>
-                {product.description}
-              </Card.Text>
-              <Button variant="primary">Go somewhere</Button>
-            </Card.Body>
-          </Card>
-        ))
+        <div style={styles.productGrid}>
+          {products.map((product) => (
+            <Card key={product.id} style={styles.productCard}>
+              <Card.Img variant="top" src={product.image} alt={product.name} />
+              <Card.Body>
+                <Card.Title>{product.name}</Card.Title>
+                <Card.Text>{product.description}</Card.Text>
+                <Button variant="primary" onClick={() => handleOrder(product)}>
+                  Order
+                </Button>
+              </Card.Body>
+            </Card>
+          ))}
+        </div>
       )}
     </div>
   );
@@ -53,12 +59,22 @@ const styles = {
     fontFamily: 'Arial, sans-serif',
     backgroundColor: '#343a40',
     margin: 0,
-    padding: '40px',
+    padding: '150px',
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
     minHeight: '100vh',
+  },
+  productGrid: {
+    display: 'grid',
+    gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))',
+    gap: '1rem',
+    width: '100%',
+    maxWidth: '1200px',
+  },
+  productCard: {
+    marginBottom: '1rem',
   },
 };
 

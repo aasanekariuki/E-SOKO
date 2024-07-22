@@ -4,7 +4,7 @@ import { Container, Form, Button, Alert } from 'react-bootstrap';
 import axios from 'axios';
 import './styles.css';
 
-// Set Axios base URL
+
 axios.defaults.baseURL = 'https://e-soko-backened-qzca.onrender.com/';
 axios.defaults.withCredentials = true;
 

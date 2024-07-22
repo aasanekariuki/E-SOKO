@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 import { Container, Row, Col, ListGroup, ListGroupItem, Button, Image } from 'react-bootstrap';
 import axios from 'axios';
 
-// Set Axios base URL
+
 axios.defaults.baseURL = 'https://e-soko-backened-qzca.onrender.com/';
 
 const CartProducts = () => {
