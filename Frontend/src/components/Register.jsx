@@ -4,6 +4,9 @@ import { Container, Form, Button, Alert } from 'react-bootstrap';
 import axios from 'axios';
 import './styles.css';
 
+axios.defaults.baseURL = 'https://e-soko-backened-qzca.onrender.com/api';
+axios.defaults.withCredentials = true;
+
 const Register = () => {
   const navigate = useNavigate();
   const [name, setName] = useState('');
@@ -57,7 +60,7 @@ const Register = () => {
         )}
         <Form onSubmit={handleRegister}>
           <Form.Group className="mb-3" controlId="formBasicName">
-            <Form.Label className="text-white">Name</Form.Label>
+            <Form.Label className="text-dark">Name</Form.Label>
             <Form.Control
               type="text"
               placeholder="Enter your name"
@@ -68,7 +71,7 @@ const Register = () => {
           </Form.Group>
 
           <Form.Group className="mb-3" controlId="formBasicEmail">
-            <Form.Label className="text-white">Email address</Form.Label>
+            <Form.Label className="text-dark">Email address</Form.Label>
             <Form.Control
               type="email"
               placeholder="Enter email"
@@ -79,7 +82,7 @@ const Register = () => {
           </Form.Group>
 
           <Form.Group className="mb-3" controlId="formBasicPassword">
-            <Form.Label className="text-white">Password</Form.Label>
+            <Form.Label className="text-dark">Password</Form.Label>
             <Form.Control
               type="password"
               placeholder="Password"
@@ -90,7 +93,7 @@ const Register = () => {
           </Form.Group>
 
           <Form.Group className="mb-3" controlId="formBasicAddress">
-            <Form.Label className="text-white">Address</Form.Label>
+            <Form.Label className="text-dark">Address</Form.Label>
             <Form.Control
               type="text"
               placeholder="Enter your address"
@@ -105,7 +108,7 @@ const Register = () => {
           </Button>
         </Form>
 
-        <p className="mt-3 text-center text-white">
+        <p className="mt-3 text-center text-dark">
           <Link to="/login" className="text-primary">Already have an account? Login here</Link>
         </p>
       </Container>

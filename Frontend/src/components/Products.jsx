@@ -11,7 +11,8 @@ const Products = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await axios.get('https://dpg-cqb5shmehbks73djnqi0-a.frankfurt-postgres.render.com/api/products', {
+        // Update to use the full URL of the deployed backend
+        const response = await axios.get('https://e-soko-backened-qzca.onrender.com/products', {
           timeout: 10000 
         });
         setProducts(response.data);
