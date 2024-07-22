@@ -9,11 +9,10 @@ import Register from './components/Register';
 import Login from './components/Login';
 import Logout from './components/Logout';
 import Products from './components/Products';
-import Orders from './userPages/Orders';
 import Carousel from './userPages/Carousel';
 import CartProducts from './userPages/CartProducts';
 import AboutUs from './components/AboutUs';
-
+import Orders from './components/Orders';
 
 axios.defaults.baseURL = 'https://e-soko-backened-qzca.onrender.com/';
 axios.defaults.withCredentials = true;
@@ -29,10 +28,10 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/logout" element={<Logout />} />
           <Route path="/products" element={<Products />} />
-          <Route path="/orders" element={<Orders />} />
           <Route path="/carousel" element={<Carousel />} />
           <Route path="/cart" element={<CartProducts />} />
           <Route path="/about" element={<AboutUs />} />
+          <Route path="/orders" element={<Orders />} />
         </Routes>
       </Router>
     </div>

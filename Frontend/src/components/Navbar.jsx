@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate, NavLink, useLocation } from 'react-router-dom';
+import axios from 'axios';
 import './Navbar.css';
 
 function Navbar() {
@@ -9,9 +10,15 @@ function Navbar() {
 
   const handleSearch = async (e) => {
     e.preventDefault();
-    const response = await axios.post('/search', { query: searchQuery });
-    if (response.data.results) {
-      navigate(`/search?q=${searchQuery}`);
+    try {
+      const response = await axios.post('/search', { query: searchQuery });
+      if (response.data.results) {
+        navigate(`/search?q=${searchQuery}`);
+      } else {
+        console.error('No results found');
+      }
+    } catch (error) {
+      console.error('Error during search:', error);
     }
   };
 
