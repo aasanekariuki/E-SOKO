@@ -9,6 +9,7 @@ import Home from './components/Home';
 import Register from './components/Register';
 import Logout from './components/Logout';
 import Products from './components/Products';
+import CartProducts from './userPages/CartProducts';
 
 function App  () {
 
@@ -22,6 +23,7 @@ function App  () {
         <Route path='/login' element={<Login/>} />
         <Route path='/logout' element={<Logout/>}/>
         <Route path='/products' element={<Products/>}/>
+        <Route path='/cart' element={<CartProducts/>}/>
       </Routes>
     </Router>
     </div>
