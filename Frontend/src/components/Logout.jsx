@@ -4,7 +4,16 @@ import { NavLink } from 'react-router-dom';
 import Swal from 'sweetalert2'
 
 function Logout() {
-  const handleClick = () => {
+  const handleClick = (id) => {
+    fetch(`/users/${id}`, {
+      method: "DELETE",
+    }).then((r) => {
+      if (r.ok) {
+        setUsers((users) =>
+          users.filter((user) => user.id !== id)
+        );
+      }
+    });
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
