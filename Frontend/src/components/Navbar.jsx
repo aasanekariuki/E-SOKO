@@ -24,7 +24,7 @@ function Navbar() {
     <nav className="navbar navbar-expand-lg bg-body-tertiary navb">
       <div className="container-fluid">
         <NavLink className="navbar-brand navt" to="/">
-          <b>E-SOKO</b>
+          <b className='main'>E-SOKO</b>
         </NavLink>
         <button
           className="navbar-toggler"
@@ -82,19 +82,7 @@ function Navbar() {
               </ul>
             </li>
           </ul>
-          <form className="d-flex" onSubmit={handleSearch}>
-            <input
-              className="form-control me-2"
-              type="search"
-              placeholder="Search"
-              aria-label="Search"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-            />
-            <button className="btn btn-outline-primary" type="submit">
-              Search
-            </button>
-          </form>
+          
         </div>
       </div>
     </nav>
