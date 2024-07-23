@@ -44,7 +44,7 @@ useEffect(() => {
         <Card.Text>
         <p>Price: {product.price}</p>  
         </Card.Text>
-        <Button variant="primary">Add to Cart</Button>
+        <button >Add to Cart</button>
       </Card.Body>
     </Card>
     ))}
