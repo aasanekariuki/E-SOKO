@@ -75,8 +75,8 @@ const CartProducts = () => {
                   <h2 className="mb-4" style={{ fontWeight: 'bold', fontSize: '2rem', color: 'white' }}>
                     Your Cart is Empty Mind adding any Products ?
                   </h2>
-                  <NavLink to="/" className="btn btn-primary">
-                    Go Back to Home
+                  <NavLink to="/products" className="btn btn-primary">
+                    Get Something
                   </NavLink>
                 </Col>
               </Row>
