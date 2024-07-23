@@ -27,7 +27,11 @@ useEffect(() => {
   getProducts()
 })
 
-
+// const handleclick = (id) => {
+//   fetch(`/products/${id}`,{
+//     method: "POST",
+//   }).then(r) => {}
+// }
 
 
   return (
@@ -44,7 +48,7 @@ useEffect(() => {
         <Card.Text>
         <p>Price: {product.price}</p>  
         </Card.Text>
-        <button >Add to Cart</button>
+        <button onClick={handleclick}>Add to Cart</button>
       </Card.Body>
     </Card>
     ))}
