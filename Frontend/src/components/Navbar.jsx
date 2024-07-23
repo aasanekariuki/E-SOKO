@@ -24,7 +24,10 @@ function Navbar() {
     <nav className="navbar navbar-expand-lg bg-body-tertiary navb">
       <div className="container-fluid">
         <NavLink className="navbar-brand navt" to="/">
-          <b className='main'>E-SOKO</b>
+          <b><button class="main" data-text="Awesome">
+    <span class="actual-text">&nbsp;E&nbsp;</span>
+    <span aria-hidden="true" class="hover-text">&nbsp;E&nbsp;</span>
+ </button></b>
         </NavLink>
         <button
           className="navbar-toggler"
@@ -41,7 +44,7 @@ function Navbar() {
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
               <NavLink to="/" className={`nav-link navs ${isActive('/') ? 'active' : ''}`}>
-                HOME
+              HOME
               </NavLink>
             </li>
             <li className="nav-item">
