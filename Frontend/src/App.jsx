@@ -12,7 +12,7 @@ import Products from './components/Products';
 import Carousel from './userPages/Carousel';
 import CartProducts from './userPages/CartProducts';
 import AboutUs from './components/AboutUs';
-import Orders from './components/Orders';
+import Orders from './userPages/Orders';
 
 axios.defaults.baseURL = 'https://e-soko-backened-qzca.onrender.com/';
 axios.defaults.withCredentials = true;
