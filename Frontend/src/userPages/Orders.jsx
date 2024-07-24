@@ -9,11 +9,10 @@ import Toast from 'react-bootstrap/Toast';
 const Orders = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const product = location.state?.product; // Get product from location state
+  const product = location.state?.product;
   const [quantity, setQuantity] = useState(1);
   const [showToast, setShowToast] = useState(false);
 
-  // Redirect to products if no product is found
   if (!product) {
     return (
       <div style={styles.container}>
@@ -32,25 +31,24 @@ const Orders = () => {
 
   const handleAddToCart = async () => {
     try {
-      const cartItem = { ...product, quantity }; // Include quantity in the cart item
-      await axios.post('/cart', cartItem); // Send to backend
+      const cartItem = { ...product, quantity };
+      await axios.post('/cart', cartItem);
       console.log('Product added to cart:', cartItem);
-      setShowToast(true); // Show confirmation toast
-      // Redirect to CartProducts page after a short delay
+      setShowToast(true);
       setTimeout(() => {
         navigate('/cart');
-      }, 2000); // Redirect after 2 seconds
+      }, 2000);
     } catch (error) {
       console.error('Error adding product to cart:', error);
     }
   };
 
   const increaseQuantity = () => {
-    setQuantity(prev => prev + 1);
+    setQuantity((prev) => prev + 1);
   };
 
   const decreaseQuantity = () => {
-    setQuantity(prev => (prev > 1 ? prev - 1 : 1));
+    setQuantity((prev) => (prev > 1 ? prev - 1 : 1));
   };
 
   const handleQuantityChange = (e) => {
@@ -74,7 +72,7 @@ const Orders = () => {
     return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(amount);
   };
 
-  const totalPrice = formatCurrency(product.price * quantity); // Calculate total price
+  const totalPrice = formatCurrency(product.price * quantity);
 
   return (
     <div style={styles.container}>
@@ -83,7 +81,7 @@ const Orders = () => {
           <h2>Order {product.name}</h2>
           <img src={product.image} alt={product.name} style={styles.image} />
           <p>{product.description}</p>
-          <p style={styles.price}>Total Price: {totalPrice}</p> {/* Display total price */}
+          <p style={styles.price}>Total Price: {totalPrice}</p>
           <div style={styles.quantityContainer}>
             <Button variant="secondary" onClick={decreaseQuantity} style={styles.quantityButton}>
               -
@@ -105,7 +103,6 @@ const Orders = () => {
         </Card.Body>
       </Card>
 
-      {/* Toast Notification for confirmation */}
       <Toast 
         style={styles.toast} 
         onClose={() => setShowToast(false)} 
@@ -123,7 +120,7 @@ const styles = {
   container: {
     fontFamily: 'Arial, sans-serif',
     minHeight: '100vh',
-    backgroundColor: '#343a40', // Dark grey background color
+    backgroundColor: '#343a40',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
@@ -132,7 +129,7 @@ const styles = {
   card: {
     width: '100%',
     maxWidth: '400px',
-    backgroundColor: '#f0f0f0', // Light grey background for the card
+    backgroundColor: '#f0f0f0',
     borderRadius: '10px',
     padding: '30px',
     boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
